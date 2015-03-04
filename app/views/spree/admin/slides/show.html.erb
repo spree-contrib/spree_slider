@@ -1,53 +1,53 @@
-<%= render :partial => 'spree/admin/shared/configuration_menu' %>
-
 <h1><%= t(:slide) %></h1>
 
-<table>
-  <tr data-hook="product_id">
-    <th><%= t(:product) %></th>
-    <td>
-      <%= @slide.product.name unless @slide.product_id.blank? %>
-    </td>
-  </tr>
-  <tr data-hook="name">
-    <th><%= t(:name) %></th>
-    <td>
-      <%= @slide.name %>
-    </td>
-  </tr>
-  <tr data-hook="body">
-    <th><%= t(:body) %></th>
-    <td>
-      <%= @slide.body %>
-    </td>
-  </tr>
-  <tr data-hook="link_url">
-    <th><%= t(:link_url) %></th>
-    <td>
-      <%= @slide.link_url %>
-    </td>
-  </tr>
-  <tr data-hook="published">
-    <th><%= t(:published) %></th>
-    <td>
-      <%= @slide.published ? t(:y) : t(:n) %>
-    </td>
-  </tr>
-  <tr data-hook="image_file_name">
-    <th><%= t(:image_file_name) %></th>
-    <td>
-      <%= @slide.image_file_name %>
-    </td>
-  </tr>
-  <tr data-hook="position">
-    <th><%= t(:position) %></th>
-    <td>
-      <%= @slide.position %>
-    </td>
-  </tr>
-</table>
+<div class="table-responsive">
+  <table class="table">
+    <tr data-hook="product_id">
+      <th><%= t(:product) %></th>
+      <td>
+        <%= @slide.product.name unless @slide.product_id.blank? %>
+      </td>
+    </tr>
+    <tr data-hook="name">
+      <th><%= t(:name) %></th>
+      <td>
+        <%= @slide.name %>
+      </td>
+    </tr>
+    <tr data-hook="body">
+      <th><%= t(:body) %></th>
+      <td>
+        <%= @slide.body %>
+      </td>
+    </tr>
+    <tr data-hook="link_url">
+      <th><%= t(:link_url) %></th>
+      <td>
+        <%= @slide.link_url %>
+      </td>
+    </tr>
+    <tr data-hook="published">
+      <th><%= t(:published) %></th>
+      <td>
+        <%= @slide.published ? t(:y) : t(:n) %>
+      </td>
+    </tr>
+    <tr data-hook="image_file_name">
+      <th><%= t(:image_file_name) %></th>
+      <td>
+        <%= @slide.image_file_name %>
+      </td>
+    </tr>
+    <tr data-hook="position">
+      <th><%= t(:position) %></th>
+      <td>
+        <%= @slide.position %>
+      </td>
+    </tr>
+  </table>
 
-<p>
-  <%= link_to_edit @slide, :class => 'edit_slide' %> <%= t(:or) %>
-  <%= link_to t(:back), collection_url %>
-</p>
+  <p>
+    <%= link_to_edit @slide, :class => 'edit_slide' %> <%= t(:or) %>
+    <%= link_to t(:back), collection_url %>
+  </p>
+</div>

@@ -7,7 +7,7 @@ h2. Installation
 To install, add spree_slider to your @Gemfile@ and run `bundle install`:
 
 <pre>
-gem 'spree_slider', github: 'priviterag/spree_slider'
+gem 'spree_slider', github: 'spree-contrib/spree_slider'
 </pre>
 
 Then install and run the migrations to add the tables:

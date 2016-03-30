@@ -1,63 +1,59 @@
 <div class="row">
 
-  <div class="col-md-10">
-    <div class="field checkbox">
-      <label>
-        <%= f.check_box :published, class: "form-control" %>
-        <%= t(:published) %>
-      </label>
+  <div class="col-md-6">
+    <div class="form-group">
+      <%= f.field_container :product_id do %>
+          <%= label_tag :product_id, t(:product) %><br>
+          <%= hidden_field_tag 'slide[product_id]', f.object.product_id.to_s, :class => "product_picker fullwidth" %>
+      <% end %>
     </div>
-  </div>
 
-  <div class="col-md-12">
-    <%= f.field_container :product_id do %>
-      <%= label_tag :product_id, t(:product) %><br>
-      <%= hidden_field_tag 'slide[product_id]', f.object.product_id.to_s, :class => "product_picker fullwidth" %>
-    <% end %>
-  </div>
-
-  <div class="col-md-6">
-    <%= f.field_container :name do %>
+    <div class="form-group">
       <%= f.label :name, t(:name) %><br>
-      <%= f.text_field :name, :class => 'fullwidth', :placeholder => t('spree_slider.placeholder_name'), class: "form-control" %>
-    <% end %>
-  </div>
+      <%= f.text_field :name, :placeholder => t('spree_slider.placeholder_name'), class: "form-control" %>
+    </div>
 
-  <div class="col-md-6">
-    <%= f.field_container :link_url do %>
+    <div class="form-group">
       <%= f.label :link_url, t(:link_url) %><br>
       <%= f.text_field :link_url, :class => 'fullwidth', :placeholder => t('spree_slider.placeholder_link_url'), class: "form-control" %>
-    <% end %>
-  </div>
+    </div>
 
-  <div class="col-md-6">
-    <%= render 'spree/admin/slides/edit_slider_locations', f: f %>
-  </div>
-
-  <div class="col-md-12">
-    <%= f.field_container :body do %>
+    <div class="form-group">
       <%= f.label :body, t(:body) %><br>
-      <%= f.text_area :body, {:cols => 60, :rows => 4, :class => 'fullwidth form-control'} %>
-    <% end %>
-  </div>
+      <%= f.text_area :body, {:rows => 8, :class => 'form-control'} %>
+    </div>
 
-  <div class="col-md-6">
-    <%= f.field_container :image do %>
+    <div class="form-group">
       <%= f.label :image, t(:image) %> <i>(<%= t('spree_slider.image_tip') %>)</i><br>
       <%= f.file_field :image %>
-    <% end %>
-  </div>
+    </div>
 
+  </div>
   <div class="col-md-6">
-    <%= f.field_container :image do %>
-      <% if f.object.image? %>
-        <p>
-          <%= label_tag t(:preview) %>
-          <br>
-          <%= image_tag f.object.image, class: 'img-responsive' %>
-        </p>
+    <div class="form-group">
+      <div class="field checkbox">
+        <label>
+          <%= f.check_box :published, class: "form-control" %>
+          <%= t(:published) %>
+        </label>
+      </div>
+    </div>
+
+    <div class="form-group" style="margin-top: 50px">
+      <%= render 'spree/admin/slides/edit_slider_locations', f: f %>
+    </div>
+
+    <div class="form-group">
+      <%= f.field_container :image do %>
+        <% if f.object.image? %>
+          <p>
+            <%= label_tag t(:preview) %>
+            <br>
+            <%= image_tag f.object.image, class: 'img-responsive' %>
+          </p>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
   </div>
 
 </div>

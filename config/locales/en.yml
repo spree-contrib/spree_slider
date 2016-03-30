@@ -27,7 +27,7 @@ en:
     placeholder_link_url: "Leave blank to use product url"
     image_tip: "Default first product image"
 
-  spree_slider_locations:
+  spree_slider_location:
     config_name: "Spree Slider Locations"
     config_description: "Manage Spree Slider Locations"
     title: "Slider Locations"

@@ -34,7 +34,7 @@ class Spree::Slide < ActiveRecord::Base
   
   #Get image url for specific style (product, small, original, custom, etc.). If style does not exists => get default_style
   def slide_image_url( style_name=nil )
-    slide_image.options[:styles].has_key?(style_name)? slide_image.url(style_name) : slide_image.url
+    slide_image.options[:styles].has_key?(style_name) or style_name == :original ? slide_image.url(style_name) : slide_image.url
   end
   
 end

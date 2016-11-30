@@ -3,10 +3,11 @@
   <%# generate a random number for the carousel id - in case you want multiple per page %>
   <% cid ||= Random.rand(1000) %>
   <% img_style = nil  if local_assigns[:img_style].nil? %>
+  <% show_indicator = true if  local_assigns[:show_indicator].nil? %>
 
   <div id="carousel-slider-<%= cid %>" class="carousel slide" data-ride="carousel" <%= (defined? interval) != nil ? "data-interval=#{interval.to_s}" : "" %>>
     
-  <% if slider.size > 1 %>
+  <% if slider.size > 1 && show_indicator  %>
     <%# Indicators %>
     <ol class="carousel-indicators">
       <% slider.each_with_index do |slide, index| %>

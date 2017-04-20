@@ -1,0 +1,36 @@
+hu:
+  next: "Következő"
+  previous: "Előző"
+  name: "Név"
+  body: "Tartalom"
+  link_url: "Link URL"
+  image: "Kép"
+  preview: "Előnézet"
+  image_file_name: "Kép fájlnév"
+  published: "Közzétett"
+  position: "Pozíció"
+  y: "Igen"
+  n: "Nem"
+
+  activerecord:
+    models:
+      spree/slide: "Slide"
+
+  spree_slider:
+    config_name: "Spree Slider"
+    config_description: "Spree Slider tartalmak kezelése"
+    title: "Slideok"
+    new_slide: "Új slide"
+    editing_slide: "Slide szerkesztése"
+    back_to_slides: "Vissza a slideokhoz"
+    placeholder_name: "Hagyd üresen a terméknév használatához"
+    placeholder_link_url: "Hagyd üresen a termék URL használatához"
+    image_tip: "Alapértelmezetten az első termékkép"
+
+  spree_slider_locations:
+    config_name: "Spree Slider helyek"
+    config_description: "Spree Slider helyek kezelése"
+    title: "Slider helyek"
+    new_location: "Új hely"
+    editing_location: "Hely szerkesztése"
+    back_to_locations: "Vissza a helyekhez"

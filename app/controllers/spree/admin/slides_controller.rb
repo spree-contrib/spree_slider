@@ -18,7 +18,16 @@ module Spree
       end
 
       def slide_params
-        params.require(:slide).permit(:name, :body, :link_url, :published, :image, :position, :product_id)
+        params.require(:slide)
+          .permit(:name,
+                  :body,
+                  :link_url,
+                  :published,
+                  :image,
+                  :position,
+                  :product_id,
+                  :starts_at,
+                  :ends_at)
       end
     end
   end

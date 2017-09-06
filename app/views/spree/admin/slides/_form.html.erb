@@ -40,7 +40,7 @@
     <%= f.field_container :starts_at do %>
         <%= f.label :starts_at, 'Starts at' %><br>
         <div class="help-block">The slide will not be shown before this date, even if published</div>
-        <%= f.date_field :starts_at, 'Starts at' %><br>
+        <%= f.date_field :starts_at, class: 'fullwidth form-control' %><br>
     <% end %>
   </div>
 
@@ -48,7 +48,7 @@
     <%= f.field_container :ends_at do %>
         <%= f.label :ends_at, 'Ends at' %><br>
         <div class="help-block">The slide will not be shown after this date, even if published</div>
-        <%= f.date_field :ends_at, 'Ends at' %><br>
+        <%= f.date_field :ends_at, class: 'fullwidth form-control' %><br>
     <% end %>
   </div>
 

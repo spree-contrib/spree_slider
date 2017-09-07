@@ -19,7 +19,7 @@ class Spree::Slide < ActiveRecord::Base
            OR (starts_at <= ? AND ends_at is NULL)
            OR (starts_at is NULL AND ends_at >= ?)
            OR (starts_at <= ? AND ends_at >= ?)',
-          *([Time.now] * 4)
+          *([Time.current] * 4)
   end
 
   def initialize(attrs = nil)
@@ -40,6 +40,6 @@ class Spree::Slide < ActiveRecord::Base
   end
 
   def active_now?
-    Time.now.between?(starts_at || 1.second.ago, ends_at || 1.second.from_now)
+    Time.current.between?(starts_at || 1.second.ago, ends_at || 1.second.from_now)
   end
 end

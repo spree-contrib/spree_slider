@@ -14,7 +14,7 @@ class Spree::Slide < ActiveRecord::Base
 
   belongs_to :product, touch: true
 
-  def self.in_time
+  def self.active_for_current_time
     where '(starts_at is NULL AND ends_at is NULL)
            OR (starts_at <= ? AND ends_at is NULL)
            OR (starts_at is NULL AND ends_at >= ?)
@@ -39,7 +39,7 @@ class Spree::Slide < ActiveRecord::Base
     !image.file? && product.present? && product.images.any? ? product.images.first.attachment : image
   end
 
-  def in_time?
+  def active_now?
     Time.now.between?(starts_at || 1.second.ago, ends_at || 1.second.from_now)
   end
 end

@@ -5,6 +5,12 @@
       <%= f.label :name, t(:name) %><br>
       <%= f.text_field :name, class: "form-control fullwidth" %>
     <% end %>
+
+    <%= f.field_container :fallback_slide_id do %>
+        <%= f.label :fallback_slide_id, 'Fallback slide' %><br>
+        <div class="help-block">This slide will be shown only when no other slide can be shown.</div>
+        <%= f.collection_select(:fallback_slide_id, Spree::Slide.all, :id, :name, { include_blank: Spree.t('match_choices.none') }, { class: 'select2', disabled: (cannot? :edit, Spree::SlideLocation) }) %>
+    <% end %>
   </div>
 
 </div>

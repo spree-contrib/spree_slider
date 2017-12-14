@@ -1,3 +1,17 @@
+<style>
+/* The only rule that matters */
+#video-background {
+/*  making the video fullscreen  */
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
+}
+</style>
 <% if slider.size > 0 %>
 
   <%# generate a random number for the carousel id - in case you want multiple per page %>
@@ -15,7 +29,17 @@
     <div class="carousel-inner">
       <% slider.each_with_index do |slide, index| %>
         <div class="item <%= index == 0 ? 'active' : '' %>">
-          <%= link_to image_tag(slide.slide_image.url, alt: slide.slide_name), url_for(slide.slide_link) %>
+          <% if slide.is_image? %>
+            <%= link_to image_tag(slide.slide_image.url, alt: slide.slide_name), url_for(slide.slide_link) %>
+          <% elsif slide.asset_url.include?('vimeo.com') %>
+            <% link_to url_for(slide.slide_link) do %>
+              <iframe class='video_background' src="https://player.vimeo.com/video/<%= slide.asset_url.split('/').last.split('?').first %>?background=1&loop=1" frameborder="0"></iframe>
+            <% end %>
+          <% elsif slide.asset_url.include?('youtube.com') %>
+            <% link_to url_for(slide.slide_link) do %>
+              <iframe class='video_background' src="https://www.youtube.com/embed/<%= slide.asset_url.split('?v=').last.split('&').first %>?autoplay=1&loop=1&disablekb=1&controls=0" frameborder="0"></iframe>
+            <% end %>
+          <% end %>
           <div class="carousel-caption">
             <h3><%= slide.slide_name %></h3>
             <% unless slide.body.blank? %>

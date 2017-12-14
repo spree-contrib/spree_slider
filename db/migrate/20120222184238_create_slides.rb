@@ -1,4 +1,4 @@
-class CreateSlides < ActiveRecord::Migration
+class CreateSlides < ActiveRecord::Migration[4.2]
   def change
     create_table :spree_slides do |t|
       t.string :name

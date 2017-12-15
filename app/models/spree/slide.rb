@@ -15,6 +15,8 @@ class Spree::Slide < ActiveRecord::Base
 
   belongs_to :product, touch: true
 
+  before_save :sanitize_assets
+
   def initialize(attrs = nil)
     attrs ||= { published: true }
     super
@@ -30,5 +32,21 @@ class Spree::Slide < ActiveRecord::Base
 
   def slide_image
     !image.file? && product.present? && product.images.any? ? product.images.first.attachment : image
+  end
+
+  def is_image?
+    !asset_url.present?
+  end
+
+  def is_video?
+    !image.present?
+  end
+
+  def sanitize_assets
+    if image_updated_at_changed? && image.present?
+      asset_url=nil
+    elsif asset_url_changed? && asset_url.present?
+      image=nil
+    end
   end
 end

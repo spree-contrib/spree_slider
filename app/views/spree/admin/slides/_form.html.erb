@@ -48,6 +48,14 @@
   </div>
 
   <div class="col-md-6">
+    <%= f.field_container :asset_url do %>
+      <%= f.label :asset_url, 'Video URL' %> <i></i><br>
+      <%= f.text_field :asset_url, class: 'fullwidth form-control', placeholder: t('spree_slider.vimeo_or_youtube') %>
+
+    <% end %>
+  </div>
+
+  <div class="col-md-6">
     <%= f.field_container :image do %>
       <%= f.label :image, t(:image) %> <i>(<%= t('spree_slider.image_tip') %>)</i><br>
       <%= f.file_field :image %>

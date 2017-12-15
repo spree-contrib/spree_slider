@@ -26,6 +26,7 @@ pt-BR:
     placeholder_name: "Deixe em branco para usar o nome do produto"
     placeholder_link_url: "Deixe em branco para usar a url do produto"
     image_tip: "Padrão é a primeira imagem do produto"
+    vimeo_or_youtube: "Vimeo ou Youtube"
 
   spree_slider_locations:
     config_name: "Locais do Spree Slider"

@@ -1,18 +1,4 @@
-<style>
-/* The only rule that matters */
-#video-background {
-/*  making the video fullscreen  */
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
-  z-index: -100;
-}
-</style>
-<% if slider.size > 0 %>
+<% if slider.size > 0 && @body_id.present? && @body_id == 'home-page' %>
 
   <%# generate a random number for the carousel id - in case you want multiple per page %>
   <% cid ||= Random.rand(1000) %>
@@ -32,12 +18,58 @@
           <% if slide.is_image? %>
             <%= link_to image_tag(slide.slide_image.url, alt: slide.slide_name), url_for(slide.slide_link) %>
           <% elsif slide.asset_url.include?('vimeo.com') %>
-            <% link_to url_for(slide.slide_link) do %>
-              <iframe class='video_background' src="https://player.vimeo.com/video/<%= slide.asset_url.split('/').last.split('?').first %>?background=1&loop=1" frameborder="0"></iframe>
+            <%= link_to url_for(slide.slide_link) do %>
+              <div class="video_container">
+                <iframe class='video_background' src="https://player.vimeo.com/video/<%= slide.asset_url.split('/').last.split('?').first %>?background=1&loop=1&autoplay=1"  volume="0" frameborder="0"></iframe>
+              </div>
             <% end %>
           <% elsif slide.asset_url.include?('youtube.com') %>
-            <% link_to url_for(slide.slide_link) do %>
-              <iframe class='video_background' src="https://www.youtube.com/embed/<%= slide.asset_url.split('?v=').last.split('&').first %>?autoplay=1&loop=1&disablekb=1&controls=0" frameborder="0"></iframe>
+            <%= link_to url_for(slide.slide_link) do %>
+              <div class="video_container">
+                <div id="video_<%= slide.id %>">
+                </div>
+              </div>
+              <script>
+                    // 2. This code loads the IFrame Player API code asynchronously.
+                    var tag = document.createElement('script');
+                    tag.src = "https://www.youtube.com/iframe_api";
+                    var firstScriptTag = document.getElementsByTagName('script')[0];
+                    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+                    // 3. This function creates an <iframe> (and YouTube player)
+                    //    after the API code downloads.
+                    var player;
+                    function onYouTubeIframeAPIReady() {
+                      player = new YT.Player('video_<%= slide.id %>', {
+                        videoId: '<%= slide.asset_url.split('?v=').last.split('&').first %>',
+                        events: {
+                          'onReady': onPlayerReady,
+                          'onStateChange': onPlayerStateChange
+                        },
+                        playerVars: {
+                            controls: 0,
+                            disablekb: 1,
+                            loop: 1,
+                            autoplay: 1
+                        }
+                      });
+                    }
+                    // 4. The API will call this function when the video player is ready.
+                    function onPlayerReady(event) {
+                         event.target.setVolume(0);
+                          event.target.playVideo();
+                    }
+                    // 5. The API calls this function when the player's state changes.
+                    //    The function indicates that when playing a video (state=1),
+                    //    the player should play for six seconds and then stop.
+                    var done = false;
+                    function onPlayerStateChange(event) {
+                      if (event.data == YT.PlayerState.PLAYING && !done) {
+                  //      setTimeout(stopVideo, 6000);
+                                done = true;
+                      }
+                         event.target.setVolume(0);
+                    }
+              </script>
             <% end %>
           <% end %>
           <div class="carousel-caption">

@@ -38,10 +38,14 @@ class Spree::Slide < ActiveRecord::Base
     !asset_url.present?
   end
 
+  def is_video?
+    !image.present?
+  end
+
   def sanitize_assets
-    if image_changed? && image.present?
+    if image_updated_at_changed? && image.present?
       asset_url=nil
-    elsif asset_url_change? && asset_url.present?
+    elsif asset_url_changed? && asset_url.present?
       image=nil
     end
   end

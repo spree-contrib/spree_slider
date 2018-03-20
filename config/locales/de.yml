@@ -1,8 +1,8 @@
 de:
   next: "Nächste"
-  previous: "Vorhergehend"
+  previous: "Vorherige"
   name: "Name"
-  body: "Körper"
+  body: "Textkörper"
   link_url: "Link URL"
   image: "Bild"
   image_file_name: "Name der Bilddatei"
@@ -17,10 +17,18 @@ de:
 
   spree_slider:
     config_name: "Spree Slides"
-    config_description: "Verwalten Spree Slider Inhalt"
+    config_description: "Spree Slider Inhalt verwalten"
     title: "Slides"
     new_slide: "Neue Slide"
-    editing_slide: "Bearbeiten Slide"
-    placeholder_name: "Leer lassen, um Produkt-Namen verwenden"
-    placeholder_link_url: "Leer lassen, um Produkt-URL verwenden"
-    image_tip: "Standard ersten product image"
+    editing_slide: "Slide bearbeiten"
+    placeholder_name: "Leer lassen, um Produkt-Namen zu verwenden"
+    placeholder_link_url: "Leer lassen, um Produkt-URL zu verwenden"
+    image_tip: "Standard ist erstes Produktbild"
+    
+  spree_slider_locations:
+    config_name: "Spree Slider Standorte"
+    config_description: "Spree Slider Standorte verwalten"
+    title: "Slider Standorte"
+    new_location: "Neuer Standort"
+    editing_location: "Standort bearbeiten"
+    back_to_locations: "Zurück zu den Standorten"

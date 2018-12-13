@@ -1,5 +1,4 @@
-class CreateSliderLocation < ActiveRecord::Migration
-
+class CreateSliderLocation < SpreeExtension::Migration[5.0]
   def change
     create_table :spree_slide_locations do |t|
       t.string :name

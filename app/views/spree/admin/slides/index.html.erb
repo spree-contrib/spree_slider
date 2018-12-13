@@ -22,7 +22,7 @@
       <td class="no-border">
         <span class="handle"></span>
       </td>
-      <td class="align-center"><%= image_tag slide.slide_image, style: 'width: 120px; height: auto;' %></td>
+      <td class="align-center"><%= image_tag slide.slide_image.url, style: 'width: 120px; height: auto;' %></td>
       <td class="align-center"><%= link_to slide.name, object_url(slide) %></td>
       <td class="align-center"><%= link_to slide.product.name, object_url(slide) unless slide.product_id.blank? %></td>
       <td class="align-center"><%= slide.published ? Spree.t(:say_yes) : Spree.t(:say_no) %></td>
@@ -35,4 +35,3 @@
   <% end %>
   </tbody>
 </table>
-

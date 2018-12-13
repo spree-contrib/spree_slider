@@ -44,7 +44,7 @@ Spree 3 uses the bootstrap framework and a default slider template is available 
 Example usage:
 
 ```erb
-  <%= render partial: 'spree/shared/slider', locals: { slider: Spree::Slide.published, cid: 'home', interval: false } %>
+<%= render partial: 'spree/shared/slider', locals: { slider: Spree::Slide.published, cid: 'home', interval: false } %>
 ```
 
 If you desire to have a customized carousel template you can specify your own like so:
@@ -74,8 +74,8 @@ and find the Spree Slider & Spree Slider Locations menu.
 You can create new slides and new locations. Then to fetch & render the slider for a particular location you can do the following:
 
 ```erb
-  <% slides = Spree::Slide.published.location("home") %>
-  <%= render partial: 'spree/shared/slider', locals: { slider: slides } %>
+<% slides = Spree::Slide.published.location("home") %>
+<%= render partial: 'spree/shared/slider', locals: { slider: slides } %>
 ```
 
 Copyright (c) 2012 [R.S.A.](http://www.rsaweb.com) released under the New BSD License

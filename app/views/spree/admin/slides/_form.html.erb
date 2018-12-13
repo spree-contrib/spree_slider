@@ -60,10 +60,9 @@
         <p>
           <%= label_tag t(:preview) %>
           <br>
-          <%= image_tag f.object.image, class: 'img-responsive' %>
+          <%= image_tag f.object.image.url, class: 'img-responsive' %>
         </p>
       <% end %>
     <% end %>
   </div>
-
 </div>

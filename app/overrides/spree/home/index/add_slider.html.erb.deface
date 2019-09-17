@@ -1,3 +1,0 @@
-<!-- insert_before '[data-hook="homepage_products"]' -->
-<% slides = Spree::Slide.published %>
-<%= render partial: 'spree/shared/slider', locals: { slider: slides } %>

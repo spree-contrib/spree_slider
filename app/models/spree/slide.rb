@@ -1,4 +1,4 @@
-class Spree::Slide < ActiveRecord::Base
+class Spree::Slide < Spree::Base
 
   has_and_belongs_to_many :slide_locations,
                           class_name: 'Spree::SlideLocation',
@@ -29,6 +29,6 @@ class Spree::Slide < ActiveRecord::Base
   end
 
   def slide_image
-    image? ? image.service_url : product.images.first.attachment.service_url
+    image? ? image.attachment : product.images.first.attachment
   end
 end

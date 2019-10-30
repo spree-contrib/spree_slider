@@ -11,6 +11,8 @@ class Spree::Slide < ActiveRecord::Base
   validates_attachment :image, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
 
   scope :published, -> { where(published: true).order('position ASC') }
+  scope :product_slides, -> { where.not(product_id: nil).order('position ASC') }
+  scope :image_slides, -> { where(product_id: nil).order('position ASC') }
   scope :location, -> (location) { joins(:slide_locations).where('spree_slide_locations.name = ?', location) }
 
   belongs_to :product, touch: true, optional: true

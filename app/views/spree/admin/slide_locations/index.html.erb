@@ -10,6 +10,7 @@
   <thead>
     <tr data-hook="admin_slides_index_headers">
       <th><%= Spree.t(:name) %></th>
+      <th>Fallback slide</th>
       <th data-hook="admin_slides_index_header_actions" class="actions"></th>
     </tr>
   </thead>
@@ -17,6 +18,14 @@
   <% @slide_locations.each do |location|%>
     <tr>
       <td class="align-center"><%= location.name %></td>
+      <td class="align-center">
+         <% if location.fallback_slide %>
+           <%= image_tag location.fallback_slide.try(:slide_image), style: 'width: 120px; height: auto;' %>
+           <%= link_to location.fallback_slide.name, admin_slide_path(location.fallback_slide) %>
+         <% else %>
+           None
+         <% end %>
+      </td>
       <td data-hook="admin_slide_locations_index_row_actions" class="actions">
         <%= link_to_edit location, no_text: true, class: 'edit' %>
         &nbsp;

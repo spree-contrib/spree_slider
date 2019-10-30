@@ -12,6 +12,12 @@ gemfile:
   - gemfiles/spree_3_2.gemfile
   - gemfiles/spree_master.gemfile
 
+before_script:
+  - mkdir ../temp; cd ../temp
+  - bundle exec rails _5.1.1_ plugin new spree_slider --mountable --dummy-path=spec/dummy --skip-test-unit
+  - mv spree_slider/spec/dummy ../spec/
+  - cd ../build; rm -rf ../temp
+
 script:
   - bundle exec rspec spec
 

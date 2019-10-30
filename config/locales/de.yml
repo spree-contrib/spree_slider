@@ -25,6 +25,8 @@ de:
     placeholder_link_url: 'Leer lassen, um Produkt-URL zu verwenden'
     image_tip: 'Standard ist erstes Produktbild'
     back_to_slides: 'Zurück zu den Slides'
+    image_slides: Bildslider
+    product_slides: Produktslider
 
   spree_slider_locations:
     config_name: 'Spree Slide Standorte'

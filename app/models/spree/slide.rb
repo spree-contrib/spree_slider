@@ -11,6 +11,8 @@ class Spree::Slide < Spree::Base
 
   belongs_to :product, touch: true
 
+  acts_as_list
+
   def initialize(attrs = nil)
     attrs ||= { published: true }
     super

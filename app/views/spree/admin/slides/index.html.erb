@@ -9,9 +9,11 @@
 <table class="table sortable" id="listing_slides" data-hook data-sortable-link="<%= update_positions_admin_slides_url %>" >
   <thead>
   <tr data-hook="admin_slides_index_headers">
-    <th colspan="2"><%= Spree.t(:image) %></th>
+    <th></th>
+    <th><%= Spree.t(:image) %></th>
     <th><%= Spree.t(:name) %></th>
     <th><%= Spree.t(:product) %></th>
+    <th><%= Spree.t(:position) %></th>
     <th><%= Spree.t(:published) %></th>
     <th data-hook="admin_slides_index_header_actions" class="actions"></th>
   </tr>
@@ -19,12 +21,14 @@
   <tbody>
   <% @slides.each do |slide|%>
     <tr id="<%= spree_dom_id slide %>" data-hook="admin_slides_index_rows">
-      <td class="no-border">
-        <span class="handle"></span>
-      </td>
+      <th class="position">
+        <%= link_to fa_icon("arrow-up"), admin_slide_move_up_path(slide), style: 'display: block;' unless slide.first? %>
+        <%= link_to fa_icon("arrow-down"), admin_slide_move_down_path(slide), style: 'display: block;' unless slide.last? %>
+      </th>
       <td class="align-center"><%= image_tag slide.slide_image, style: 'width: 120px; height: auto;' %></td>
       <td class="align-center"><%= link_to slide.name, object_url(slide) %></td>
       <td class="align-center"><%= link_to slide.product.name, object_url(slide) unless slide.product_id.blank? %></td>
+      <td class="align-center"><%= slide.position %></td>
       <td class="align-center"><%= slide.published ? Spree.t(:say_yes) : Spree.t(:say_no) %></td>
       <td data-hook="admin_slides_index_row_actions" class="actions">
         <%= link_to_edit slide, no_text: true, class: 'edit' %>

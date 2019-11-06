@@ -15,7 +15,8 @@
     <div class="carousel-inner">
       <% slider.each_with_index do |slide, index| %>
         <div class="item <%= index == 0 ? 'active' : '' %>">
-          <%= link_to image_tag(slide.slide_image.url, alt: slide.slide_name), url_for(slide.slide_link) %>
+          <%= (link_to image_tag(slide.slide_image.url, alt: slide.slide_name), url_for(slide.slide_link)) unless slide&.slide_link&.empty? %>
+          <%= image_tag(slide.slide_image.url, alt: slide.slide_name) if slide&.slide_link&.empty? %>
           <div class="carousel-caption">
             <h3><%= slide.slide_name %></h3>
             <% unless slide.body.blank? %>

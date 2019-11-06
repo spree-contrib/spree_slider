@@ -1,0 +1,36 @@
+bg:
+  next: "Следващ"
+  previous: "Предишен"
+  name: "Име"
+  body: "Текст"
+  link_url: "Линк"
+  image: "Картинка"
+  preview: "Преглед"
+  image_file_name: "Image file name"
+  published: "Публикуван"
+  position: "Позиция"
+  y: "Да"
+  n: "Не"
+
+  activerecord:
+    models:
+      spree/slide: "Слайд"
+
+  spree_slider:
+    config_name: "Spree Слайдер"
+    config_description: "Упрваление на съдържанието в Spree Слайдерите"
+    title: "Слайдери"
+    new_slide: "Нов Слайд"
+    editing_slide: "Редактиране на Слайд"
+    back_to_slides: "Обратно към Слайдовете"
+    placeholder_name: "Оставете празно за да използвате името на продукта"
+    placeholder_link_url: "Оставете празно за да използвате линка на продукта"
+    image_tip: "По подразбиране е първата картинка от продукта"
+
+  spree_slider_locations:
+    config_name: "Spree Слайдер Локации"
+    config_description: "Управление на Spree Слайдер локациите"
+    title: "Слайдер Локации"
+    new_location: "Нова Локация"
+    editing_location: "Редактиране на Локацията"
+    back_to_locations: "Обратно към Локациите"

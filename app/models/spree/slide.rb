@@ -29,6 +29,8 @@ class Spree::Slide < Spree::Base
   end
 
   def slide_image
-    image? ? image.attachment : product.images.first.attachment
+    blob = image? ? image.attachment.blob : product.images.first.attachment.blob
+    Rails.application.routes.url_helpers.rails_blob_url(blob, only_path: true)
   end
+
 end

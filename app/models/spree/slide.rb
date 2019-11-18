@@ -1,21 +1,24 @@
 class Spree::Slide < ActiveRecord::Base
-
   has_and_belongs_to_many :slide_locations,
                           class_name: 'Spree::SlideLocation',
                           join_table: 'spree_slide_slide_locations'
 
-  has_attached_file :image,
-                    url: '/spree/slides/:id/:style/:basename.:extension',
-                    path: ':rails_root/public/spree/slides/:id/:style/:basename.:extension',
-                    convert_options: { all: '-strip -auto-orient -colorspace sRGB' }
-  validates_attachment :image, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
+  has_one_attached :image
+
+  validates :name, :link_url, :image, presence: true, unless: -> { product }
+  validates :image, content_type: ['image/jpg', 'image/jpeg', 'image/png', 'image/gif']
 
   scope :published, -> { where(published: true).order('position ASC') }
+  scope :location, ->(location) { joins(:slide_locations).where('spree_slide_locations.name = ?', location) }
   scope :product_slides, -> { where.not(product_id: nil).order('position ASC') }
   scope :image_slides, -> { where(product_id: nil).order('position ASC') }
-  scope :location, -> (location) { joins(:slide_locations).where('spree_slide_locations.name = ?', location) }
 
   belongs_to :product, touch: true, optional: true
+
+  STYLES = {
+    preview: [120, 120],
+    thumbnail: [240, 240]
+  }
 
   def initialize(attrs = nil)
     attrs ||= { published: true }
@@ -31,6 +34,21 @@ class Spree::Slide < ActiveRecord::Base
   end
 
   def slide_image
-    !image.file? && product.present? && product.images.any? ? product.images.first.attachment : image
+    !image.attached? && product.present? && product.images.any? ? product.images.first.attachment : image.attachment
+  end
+
+  # Helper for resizing
+  def preview
+    image_variant(:preview)
+  end
+
+  def thumbnail
+    image_variant(:thumbnail)
+  end
+
+  private
+
+  def image_variant(variant)
+    slide_image.variant(resize_to_limit: STYLES[variant])
   end
 end

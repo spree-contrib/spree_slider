@@ -9,14 +9,21 @@
 <% product_slides = @slides.where.not(product_id: nil) %>
 <% image_slides = @slides.where(product_id: nil) %>
 
-<% [[I18n.t("spree_slider.image_slides"), image_slides], [I18n.t("spree_slider.product_slides"), product_slides]].each do |translation, slides|%>
+<% [
+  [I18n.t("spree_slider.image_slides"), image_slides, :image],
+  [I18n.t("spree_slider.product_slides"), product_slides, :product]
+  ].each do |translation, slides, type|%>
   <h3><%= translation %></h3>
   <table class="table sortable" id="listing_slides" data-hook data-sortable-link="<%= update_positions_admin_slides_url %>">
     <thead>
       <tr data-hook="admin_slides_index_headers">
-        <th colspan="2"><%= Spree.t(:image) %></th>
-        <th><%= Spree.t(:name) %></th>
-        <th><%= Spree.t(:product) %></th>
+        <th><%= Spree.t(:image) %></th>
+        <% if type == :image %>
+          <th><%= Spree.t(:name) %></th>
+        <% end %>
+        <% if type == :product %>
+          <th><%= Spree.t(:product) %></th>
+        <% end %>
         <th><%= Spree.t(:published) %></th>
         <th data-hook="admin_slides_index_header_actions" class="actions"></th>
       </tr>
@@ -24,14 +31,15 @@
     <tbody>
       <% slides.each do |slide| %>
         <tr id="<%= spree_dom_id slide %>" data-hook="admin_slides_index_rows">
-          <td class="no-border">
-            <span class="handle"></span>
-          </td>
-          <td class="align-center"><%= image_tag slide.slide_image, style: 'width: 120px; height: auto;' %></td>
-          <td class="align-center"><%= link_to slide.name, object_url(slide) %></td>
-          <td class="align-center"><%= link_to slide.product.name, object_url(slide) unless slide.product_id.blank? %></td>
-          <td class="align-center"><%= slide.published ? Spree.t(:say_yes) : Spree.t(:say_no) %></td>
-          <td data-hook="admin_slides_index_row_actions" class="actions">
+          <td><%= image_tag slide.slide_image ? main_app.url_for(slide.preview) : "noimage/small.png" %></td>
+          <% if type == :image %>
+            <td><%= link_to slide.name, object_url(slide) %></td>
+          <% end %>
+          <% if type == :product %>
+            <td><%= slide.product ? link_to(slide.product.name, object_url(slide)) : '---' %></td>
+          <% end %>
+          <td><%= slide.published ? Spree.t(:say_yes) : Spree.t(:say_no) %></td>
+          <td data-hook="admin_slides_index_row_actions" class="actions text-right">
             <%= link_to_edit slide, no_text: true, class: 'edit' %>
             &nbsp;
             <%= link_to_delete slide, no_text: true %>

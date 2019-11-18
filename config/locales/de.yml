@@ -11,6 +11,9 @@ de:
   y: 'Ja'
   n: 'Nein'
 
+  spree:
+    published: Veröffentlicht
+
   activerecord:
     models:
       spree/slide: 'Slide'

@@ -16,8 +16,9 @@ Gem::Specification.new do |s|
   s.requirements << 'none'
 
   spree_version = '>= 4.0', '< 5.0'
-  s.add_dependency 'spree_core', spree_version
+  s.add_dependency 'active_storage_validations', '~> 0.8.4'
   s.add_dependency 'spree_backend', spree_version
+  s.add_dependency 'spree_core', spree_version
 
   s.add_development_dependency 'appraisal'
   s.add_development_dependency 'factory_girl'

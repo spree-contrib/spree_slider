@@ -11,4 +11,5 @@ spec/dummy
 pkg/*
 Gemfile.lock
 gemfiles/*.gemfile.lock
-
+coverage
+.byebug_history

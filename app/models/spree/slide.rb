@@ -3,6 +3,8 @@ class Spree::Slide < ActiveRecord::Base
                           class_name: 'Spree::SlideLocation',
                           join_table: 'spree_slide_slide_locations'
 
+  belongs_to :product, touch: true, optional: true
+
   has_one_attached :image
 
   validates :name, :link_url, :image, presence: true, unless: -> { product }
@@ -10,15 +12,13 @@ class Spree::Slide < ActiveRecord::Base
 
   scope :published, -> { where(published: true).order('position ASC') }
   scope :location, ->(location) { joins(:slide_locations).where('spree_slide_locations.name = ?', location) }
-  scope :product_slides, -> { where.not(product_id: nil).order('position ASC') }
-  scope :image_slides, -> { where(product_id: nil).order('position ASC') }
-
-  belongs_to :product, touch: true, optional: true
+  scope :product_slides, -> { published.where.not(product_id: nil).order('position ASC') }
+  scope :image_slides, -> { published.where(product_id: nil).order('position ASC') }
 
   STYLES = {
     preview: [120, 120],
     thumbnail: [240, 240]
-  }
+  }.freeze
 
   def initialize(attrs = nil)
     attrs ||= { published: true }

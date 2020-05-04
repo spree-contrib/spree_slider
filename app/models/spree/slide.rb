@@ -4,6 +4,8 @@ class Spree::Slide < Spree::Base
                           class_name: 'Spree::SlideLocation',
                           join_table: 'spree_slide_slide_locations'
 
+  has_and_belongs_to_many :stores, join_table: 'spree_stores_slides'
+
   has_one_attached :image
 
   scope :published, -> { where(published: true).order('position ASC') }

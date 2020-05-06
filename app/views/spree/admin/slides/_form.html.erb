@@ -40,6 +40,14 @@
     <%= render 'spree/admin/slides/edit_slider_locations', f: f %>
   </div>
 
+  <div class="col-md-6 mt-5">
+    <%= f.field_container :stores, class: ['form-group'] do %>
+      <%= f.label :stores, Spree.t(:stores)  %>
+      <%= f.collection_select(:store_ids, Spree::Store.all, :id, :name, { }, { class: 'select2', multiple: true }) %>
+      <%= f.error_message_on :stores %>
+    <% end %>
+  </div>
+
   <div class="col-md-12">
     <%= f.field_container :body do %>
       <%= f.label :body, t(:body) %><br>

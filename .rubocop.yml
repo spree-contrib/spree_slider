@@ -1,3 +1,5 @@
+require: rubocop-rails
+
 AllCops:
   DisplayCopNames: true
   TargetRubyVersion: 2.5

@@ -1,10 +1,16 @@
 require_relative '../../spec_helper.rb'
 
 describe Spree::Slide do
-  describe '.published' do
+
+  shared_context 'with slide variety' do
     let!(:slide_1) { create(:image_slide) }
     let!(:slide_2) { create(:product_slide) }
     let!(:slide_3) { create(:product_slide, published: false) }
+
+  end
+
+  describe '.published' do
+    include_context 'with slide variety'
 
     it 'returns only published slides' do
       expect(described_class.published).to contain_exactly(slide_1, slide_2)
@@ -12,9 +18,7 @@ describe Spree::Slide do
   end
 
   describe '.product_slides' do
-    let!(:slide_1) { create(:image_slide) }
-    let!(:slide_2) { create(:product_slide) }
-    let!(:slide_3) { create(:product_slide, published: false) }
+    include_context 'with slide variety'
 
     it 'returns only product slides' do
       expect(described_class.product_slides).to contain_exactly(slide_2)
@@ -22,16 +26,14 @@ describe Spree::Slide do
   end
 
   describe '.image_slides' do
-    let!(:slide_1) { create(:image_slide) }
-    let!(:slide_2) { create(:product_slide) }
-    let!(:slide_3) { create(:product_slide, published: false) }
+    include_context 'with slide variety'
 
     it 'returns only product slides' do
       expect(described_class.image_slides).to contain_exactly(slide_1)
     end
   end
 
-  describe '.image_slides' do
+  describe '.image_slides location' do
     let!(:slide_loc_1) { create(:slide_location, name: '1') }
     let!(:slide_loc_2) { create(:slide_location, name: '2') }
     let!(:slide_1) { create(:image_slide, slide_locations: [slide_loc_1]) }
@@ -43,7 +45,7 @@ describe Spree::Slide do
   end
 
   describe '#slide_name' do
-    context 'product slide' do
+    context 'with product slide' do
       let!(:product_slide) { create(:product_slide) }
 
       it 'returns product name' do
@@ -51,7 +53,7 @@ describe Spree::Slide do
       end
     end
 
-    context 'image slide' do
+    context 'with image slide' do
       let!(:image_slide) { create(:image_slide) }
 
       it 'returns custom name' do
@@ -61,7 +63,7 @@ describe Spree::Slide do
   end
 
   describe '#slide_link' do
-    context 'product slide' do
+    context 'with product slide' do
       let!(:product_slide) { create(:product_slide) }
 
       it 'returns product' do
@@ -69,7 +71,7 @@ describe Spree::Slide do
       end
     end
 
-    context 'image slide' do
+    context 'with image slide' do
       let!(:image_slide) { create(:image_slide) }
 
       it 'returns custom link' do
@@ -79,7 +81,7 @@ describe Spree::Slide do
   end
 
   describe '#slide_image' do
-    context 'product slide' do
+    context 'with product slide' do
       let!(:product_slide) { create(:product_slide) }
       let!(:image) { instance_double('Spree::Image') }
       let!(:image_wrapper) { double('image warpper', attachment: image) }
@@ -93,7 +95,7 @@ describe Spree::Slide do
       end
     end
 
-    context 'image slide' do
+    context 'with image slide' do
       let!(:image_slide) { create(:image_slide) }
 
       it 'returns custom image' do

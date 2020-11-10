@@ -5,6 +5,7 @@ require 'rspec/core/rake_task'
 require 'spree/testing_support/extension_rake'
 
 RSpec::Core::RakeTask.new
+Rake::Task.define_task(:environment)
 
 task default: :environment do
   if Dir['spec/dummy'].empty?

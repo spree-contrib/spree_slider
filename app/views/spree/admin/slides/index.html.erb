@@ -18,12 +18,7 @@
     <thead>
       <tr data-hook="admin_slides_index_headers">
         <th><%= Spree.t(:image) %></th>
-        <% if type == :image %>
-          <th><%= Spree.t(:name) %></th>
-        <% end %>
-        <% if type == :product %>
-          <th><%= Spree.t(:product) %></th>
-        <% end %>
+        <th><%= get_column_header_by_type(type) %></th>
         <th><%= Spree.t(:published) %></th>
         <th data-hook="admin_slides_index_header_actions" class="actions"></th>
       </tr>
@@ -32,12 +27,7 @@
       <% slides.each do |slide| %>
         <tr id="<%= spree_dom_id slide %>" data-hook="admin_slides_index_rows">
           <td><%= image_tag slide.slide_image ? main_app.url_for(slide.preview) : "noimage/small.png" %></td>
-          <% if type == :image %>
-            <td><%= link_to slide.name, object_url(slide) %></td>
-          <% end %>
-          <% if type == :product %>
-            <td><%= slide.product ? link_to(slide.product.name, object_url(slide)) : '---' %></td>
-          <% end %>
+          <td><%= get_image_link_by_type(slide, type) %></td>
           <td><%= slide.published ? Spree.t(:say_yes) : Spree.t(:say_no) %></td>
           <td data-hook="admin_slides_index_row_actions" class="actions text-right">
             <%= link_to_edit slide, no_text: true, class: 'edit' %>

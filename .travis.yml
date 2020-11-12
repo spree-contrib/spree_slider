@@ -8,12 +8,14 @@ env:
   - DB=mysql
 
 gemfile:
-  - gemfiles/spree_3_1.gemfile
-  - gemfiles/spree_3_2.gemfile
+  - gemfiles/spree_3_7.gemfile
+  - gemfiles/spree_4_0.gemfile
+  - gemfiles/spree_4_1.gemfile
   - gemfiles/spree_master.gemfile
 
 script:
-  - bundle exec rspec spec
+  - bundle exec rake test_app
+  - bundle exec rake spec
 
 rvm:
   - 2.3.1

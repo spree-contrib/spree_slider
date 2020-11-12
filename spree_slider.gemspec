@@ -15,28 +15,11 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.requirements << 'none'
 
-  spree_version = '>= 4.0', '< 5.0'
+  spree_version = '>= 3.7.0', '< 5.0'
   s.add_dependency 'active_storage_validations', '~> 0.9.0'
   s.add_dependency 'spree_backend', spree_version
   s.add_dependency 'spree_core', spree_version
   s.add_dependency 'spree_extension'
 
-  s.add_development_dependency 'appraisal'
-  s.add_development_dependency 'awesome_print'
-  s.add_development_dependency 'byebug'
-  s.add_development_dependency 'capybara'
-  s.add_development_dependency 'capybara-screenshot'
-  s.add_development_dependency 'coffee-rails'
-  s.add_development_dependency 'database_cleaner'
-  s.add_development_dependency 'factory_bot', '~> 4.7'
-  s.add_development_dependency 'ffaker'
-  s.add_development_dependency 'mysql2'
-  s.add_development_dependency 'pg'
-  s.add_development_dependency 'pry'
-  s.add_development_dependency 'rspec-mocks'
-  s.add_development_dependency 'rspec-rails', '~> 4.0.0.beta2'
-  s.add_development_dependency 'sass-rails'
-  s.add_development_dependency 'simplecov'
-  s.add_development_dependency 'sqlite3'
-  s.add_development_dependency 'webdrivers', '~> 4.0.0'
+  s.add_development_dependency 'spree_dev_tools'
 end

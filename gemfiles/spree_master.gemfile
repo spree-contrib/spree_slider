@@ -2,11 +2,9 @@
 
 source "https://rubygems.org"
 
-gem "spree", "~> 4.0"
-gem "rubocop", require: false
+gem "spree", github: "spree/spree", branch: "master"
 gem "rubocop-rails", require: false
 gem "rubocop-rspec", require: false
-gem "spree_core", github: "spree/spree", branch: "master"
 gem "rails-controller-testing"
 
 gemspec path: "../"

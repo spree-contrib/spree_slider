@@ -4,6 +4,8 @@ module Spree
       def get_column_header_by_type(type)
         return Spree.t(:name) if type == :image
         return Spree.t(:product) if type == :product
+
+        return '----'
       end
 
       def get_image_link_by_type(slide, type)

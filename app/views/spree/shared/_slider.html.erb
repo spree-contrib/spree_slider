@@ -14,28 +14,28 @@
     <%# Wrapper for slider %>
     <div class="carousel-inner">
       <% slider.each_with_index do |slide, index| %>
-        <div class="item <%= index == 0 ? 'active' : '' %>">
-          <%= link_to image_tag(slide.slide_image.url, alt: slide.slide_name), url_for(slide.slide_link) %>
+        <div class="carousel-item <%= index == 0 ? 'active' : '' %>">
+          <% image_url = slide.slide_image ?  main_app.url_for(slide.slide_image) : "noimage/large"%>
+          <%= link_to image_tag(image_url, alt: slide.slide_name), url_for(slide.slide_link) %>
           <div class="carousel-caption">
             <h3><%= slide.slide_name %></h3>
             <% unless slide.body.blank? %>
-              <p><%= slide.body %><p>
-            <% end %>
-          </div>
+              <p><%= slide.body %>
+                <p>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
         </div>
-      <% end %>
+
+        <%# Controls %>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only"><%= t(:previous) %></span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only"><%= t(:next) %></span>
+        </a>
     </div>
-
-    <%# Controls %>
-    <a class="left carousel-control" href="#carousel-slider-<%= cid %>" role="button" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-      <span class="sr-only"><%= t(:previous) %></span>
-    </a>
-    <a class="right carousel-control" href="#carousel-slider-<%= cid %>" role="button" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-      <span class="sr-only"><%= t(:next) %></span>
-    </a>
-
-  </div>
-
 <% end %>

@@ -1,0 +1,38 @@
+fr:
+  next: 'Suivant'
+  previous: 'Précédent'
+  name: 'Nom'
+  body: 'Corps'
+  link_url: 'Lien URL'
+  image: 'Image'
+  preview: 'Aperçu de'
+  image_file_name: 'Nom du fichier image'
+  published: 'Publié'
+  position: 'Position'
+  y: 'Oui'
+  n: 'Non'
+
+  activerecord:
+    models:
+      spree/slide: 'Diapositives'
+
+  spree_slider:
+    config_name: "Diaporamas"
+    config_description: "Gérer le contenu du diaporama"
+    title: "Diaporama"
+    new_slide: "Nouvelle diapositive"
+    editing_slide: "Edition de la diaposititve"
+    back_to_slides: "Retour aux diapositives"
+    placeholder_name: "Laisser blanc pour utiliser le nom du produit"
+    placeholder_link_url: "Laisser blanc pour utiliser l'url du produit"
+    image_tip: "Première image du produit par défaut"
+    image_slides: "Diapositives d'image"
+    product_slides: "Diapositives de produit"
+
+  spree_slider_locations:
+    config_name: "Emplacements des diaporamas"
+    config_description: "Gérer les emplacements des diaporamas"
+    title: "Emplacements diaporamas"
+    new_location: "Nouvel emplacement"
+    editing_location: "Gérer l'emplacement"
+    back_to_locations: "Retour aux emplacements"

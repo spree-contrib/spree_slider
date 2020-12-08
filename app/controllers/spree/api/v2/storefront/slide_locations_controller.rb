@@ -14,7 +14,7 @@ module Spree
           end
 
           def resource
-            scope.find(id: params[:id])
+            scope.find(params[:id])
           end
 
           def resource_serializer

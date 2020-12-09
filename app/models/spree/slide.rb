@@ -1,4 +1,6 @@
 class Spree::Slide < ActiveRecord::Base
+  include Rails.application.routes.url_helpers
+
   has_and_belongs_to_many :slide_locations,
                           class_name: 'Spree::SlideLocation',
                           join_table: 'spree_slide_slide_locations'
@@ -45,6 +47,11 @@ class Spree::Slide < ActiveRecord::Base
 
   def thumbnail
     image_form(:thumbnail)
+  end
+
+  def slide_image_url
+    # For Api
+    rails_blob_path(image, only_path: true)
   end
 
   private

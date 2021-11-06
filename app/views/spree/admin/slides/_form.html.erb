@@ -18,7 +18,7 @@
   <div class="col-md-12">
     <%= f.field_container :product_id do %>
       <%= label_tag :product_id, t(:product) %><br>
-      <%= hidden_field_tag 'slide[product_id]', f.object.product_id.to_s, class: "product_picker fullwidth" %>
+      <%= select_tag 'slide[product_id]', options_for_select(Spree::Product.all.map { |pp| [pp.name, pp.id] }, f.object.product_id), class: 'd-block fullwidth form-control select2', include_blank: true %>
     <% end %>
   </div>
 
